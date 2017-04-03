@@ -15,8 +15,6 @@
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (assign, nonatomic) BOOL scrollViewBounces;
 
-@property (strong, nonatomic) UIPageControl *pageControl;
-
 @property (strong, nonatomic) NSArray *datasourceImages;
 @property (assign, nonatomic) NSUInteger currentSelectedPage;
 
