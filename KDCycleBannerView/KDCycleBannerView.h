@@ -34,6 +34,8 @@ typedef void(^CompleteBlock)(void);
 
 @interface KDCycleBannerView : UIView
 
+@property (strong, nonatomic) UIPageControl *pageControl;
+
 // Delegate and Datasource
 @property (weak, nonatomic) IBOutlet id<KDCycleBannerViewDataSource> datasource;
 @property (weak, nonatomic) IBOutlet id<KDCycleBannerViewDelegate> delegate;
