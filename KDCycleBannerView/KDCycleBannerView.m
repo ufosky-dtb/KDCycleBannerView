@@ -15,11 +15,14 @@
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (assign, nonatomic) BOOL scrollViewBounces;
 
+@property (strong, nonatomic) UIPageControl *pageControl;
+
 @property (strong, nonatomic) NSArray *datasourceImages;
 @property (assign, nonatomic) NSUInteger currentSelectedPage;
 
 @property (strong, nonatomic) CompleteBlock completeBlock;
 
+@property (nonatomic) Boolean pageControlIsHidden;
 @end
 
 @implementation KDCycleBannerView
@@ -32,6 +35,7 @@ static void *kContentImageViewObservationContext = &kContentImageViewObservation
     if (self) {
         // Initialization code
         _scrollViewBounces = YES;
+        _pageControlIsHidden = NO;
     }
     return self;
 }
@@ -39,6 +43,7 @@ static void *kContentImageViewObservationContext = &kContentImageViewObservation
 - (id)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         _scrollViewBounces = YES;
+        _pageControlIsHidden = NO;
     }
     return self;
 }
@@ -92,7 +97,17 @@ static void *kContentImageViewObservationContext = &kContentImageViewObservation
     _pageControl = [[UIPageControl alloc] initWithFrame:pageControlFrame];
     _pageControl.center = CGPointMake(CGRectGetWidth(_scrollView.frame)*0.5, CGRectGetHeight(_scrollView.frame) - 12.);
     _pageControl.userInteractionEnabled = NO;
+    if (_pageControlIsHidden) {
+        _pageControl.hidden = YES;
+    }
     [self addSubview:_pageControl];
+}
+
+- (void)setPageControlHidden:(Boolean)hidden {
+    _pageControlIsHidden = hidden;
+    if (_pageControl != nil) {
+        _pageControl.hidden = hidden;
+    }
 }
 
 - (void)loadData {
